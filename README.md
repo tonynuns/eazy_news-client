@@ -85,7 +85,7 @@ News enthusiasts who are:
 - News Article Detail
   [News Article Detail](./Mock%20Ups/EazyNews%20-%20News%20Article%20Detail.png)
 
-  - Add Comment: accessible only to logged in users
+- Add Comment: accessible only to logged in users who can also delete own comment
   [Add Comment](./Mock%20Ups/EazyNews%20-%20Add%20Comment.png)
 
 - Sign Up
@@ -96,7 +96,8 @@ News enthusiasts who are:
 
 
 ### Data
-[Data](./Mock%20Ups/EazyNews%20-%20Data.png)
+- Data
+  [Data](./Mock%20Ups/EazyNews%20-%20Data.png)
 
 
 ### Endpoints
