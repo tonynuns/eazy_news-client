@@ -77,27 +77,27 @@ News enthusiasts who are:
 ### Mockups
 
 - Home page
-  [Home Page](./src/Mock%20Ups/EazyNews%20-%20Home%20Page.png)
+  [Home Page](./mock_ups/EazyNews%20-%20Home%20Page.png)
 
 - Archive Page
-  [Archive Page](./src/Mock%20Ups/EazyNews%20-%20Archive%20Page.png)
+  [Archive Page](./mock_ups/EazyNews%20-%20Archive%20Page.png)
 
 - News Article Detail
-  [News Article Detail](./src/Mock%20Ups/EazyNews%20-%20News%20Article%20Detail.png)
+  [News Article Detail](./mock_ups/EazyNews%20-%20News%20Article%20Detail.png)
 
 - Add Comment: accessible only to logged in users who can also delete own comment
-  [Add Comment](./src/Mock%20Ups/EazyNews%20-%20Add%20Comment.png)
+  [Add Comment](./mock_ups/EazyNews%20-%20Add%20Comment.png)
 
 - Sign Up
-  [Sign Up](./src/Mock%20Ups/EazyNews%20-%20Sign%20Up.png)
+  [Sign Up](./mock_ups/EazyNews%20-%20Sign%20Up.png)
 
 - Login
-  [Login](./src/Mock%20Ups/EazyNews%20-%20Login.png)
+  [Login](./mock_ups/EazyNews%20-%20Login.png)
 
 
 ### Data
 - Data
-  [Data](./Mock%20Ups/EazyNews%20-%20Data.png)
+  [Data](./mock_ups/EazyNews%20-%20Data.png)
 
 
 ### Endpoints

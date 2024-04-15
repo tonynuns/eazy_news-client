@@ -14,3 +14,10 @@ body {
 	font-size: 1.6rem;
 	font-family: "avenir-next";
 }
+.input {
+	border-radius: 1rem;
+	border: 1px solid $cloud;
+	height: 2.6rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
