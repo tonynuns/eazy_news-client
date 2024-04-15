@@ -2,7 +2,9 @@
 @use "./styles/variables.scss" as *;
 @use "./styles/mixins.scss" as *;
 
-* {
+*,
+* ::before,
+* ::after {
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
@@ -13,6 +15,13 @@ html {
 body {
 	font-size: 1.6rem;
 	font-family: "avenir-next";
+}
+.app-container {
+	@include flex($direction: column);
+	min-height: 100vh;
+}
+.main-body {
+	flex-grow: 1;
 }
 .input {
 	border-radius: 1rem;

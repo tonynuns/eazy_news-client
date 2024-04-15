@@ -10,18 +10,22 @@ import "./App.scss";
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Header />
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/archive" element={<HomePage />} />
-				<Route path="/signup" element={<SignUpPage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/:id" element={<NewsDetailPage />} />
-				<Route path="*" element={<NotFoundPage />} />
-			</Routes>
-			<Footer />
-		</BrowserRouter>
+		<div className="app-container">
+			<BrowserRouter>
+				<Header />
+				<div className="main-body">
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/archive" element={<HomePage />} />
+						<Route path="/signup" element={<SignUpPage />} />
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/:id" element={<NewsDetailPage />} />
+						<Route path="*" element={<NotFoundPage />} />
+					</Routes>
+				</div>
+				<Footer />
+			</BrowserRouter>
+		</div>
 	);
 }
 

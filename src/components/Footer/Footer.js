@@ -1,7 +1,11 @@
-import React from "react";
+import "./Footer.scss";
 
 function Footer() {
-	return <div>Footer</div>;
+	return (
+		<footer className="footer">
+			<p>&copy; {`${new Date().getFullYear()} EazyNews. All Rights Reserved`}</p>
+		</footer>
+	);
 }
 
 export default Footer;
