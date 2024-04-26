@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.jpg";
 import "./Header.scss";
 
-function Header() {
+function Header({ user, setUser }) {
+	const handleLogout = () => {
+		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("user_info");
+		setUser(null);
+	};
+
 	return (
 		<header className="header">
 			<div className="header__container">
@@ -19,15 +25,24 @@ function Header() {
 						<li className="header__nav-item">Archive</li>
 					</Link>
 					<div className="header__nav-access">
-						<Link className="header__nav-link" to="/signup">
-							<li className="header__nav-item">Sign Up</li>
-						</Link>
-						<Link className="header__nav-link" to="/login">
-							<li className="header__nav-item">Log In</li>
-						</Link>
-						<Link className="header__nav-link" to="">
-							<li className="header__nav-item">Log Out</li>
-						</Link>
+						{!user && (
+							<Link className="header__nav-link" to="/signup">
+								<li className="header__nav-item">Sign Up</li>
+							</Link>
+						)}
+						{!user && (
+							<Link className="header__nav-link" to="/login">
+								<li className="header__nav-item">Log In</li>
+							</Link>
+						)}
+
+						{user && (
+							<Link className="header__nav-link" to="">
+								<li className="header__nav-item" onClick={handleLogout}>
+									Log Out
+								</li>
+							</Link>
+						)}
 					</div>
 				</ul>
 			</div>

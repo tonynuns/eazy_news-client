@@ -24,9 +24,15 @@
 			gap: 1.3rem;
 			margin: 2rem 0;
 		}
+
+		&-error {
+			outline: none;
+			border-color: red;
+		}
 	}
 	&__message {
-		border-left: 5px solid #ddd;
+		border-left: 5px solid $red;
+		color: $red;
 		padding: 0.75rem;
 		margin-top: 2rem;
 	}

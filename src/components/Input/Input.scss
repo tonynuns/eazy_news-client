@@ -16,5 +16,10 @@
 		width: 50%;
 		max-width: 34rem;
 		font-size: inherit;
+
+		&:focus {
+			outline: none;
+			border-color: $slate;
+		}
 	}
 }
