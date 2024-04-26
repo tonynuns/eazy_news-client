@@ -22,11 +22,42 @@ body {
 }
 .main-body {
 	flex-grow: 1;
+	font-size: 1.2rem;
+	padding: 1.6rem;
+
+	@include tablet {
+		font-size: 1.8rem;
+		padding: 3.2rem;
+	}
+	@include desktop {
+		font-size: 2.5rem;
+		padding: 4.8rem;
+	}
 }
 .input {
 	border-radius: 1rem;
 	border: 1px solid $cloud;
-	height: 2.6rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding: 0.5rem 1rem;
+
+	@include tablet {
+		font-size: 1.5rem;
+	}
+	@include desktop {
+		font-size: 2rem;
+	}
+}
+.btn {
+	background-color: $green;
+	border: none;
+	border-radius: 0.5rem;
+	color: $white;
+	padding: 0.5rem;
+	width: 30%;
+	max-width: 18rem;
+	font-size: inherit;
+	cursor: pointer;
+
+	@include tablet {
+		padding: 0.8rem 3.2rem;
+	}
 }

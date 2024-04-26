@@ -1,0 +1,28 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.profile {
+	&__title {
+		font-size: 1.4rem;
+
+		@include tablet {
+			font-size: 2rem;
+		}
+		@include desktop {
+			font-size: 2.8rem;
+		}
+	}
+	&__info {
+		@include flex($direction: column, $gap: 0.8rem);
+		margin: 1.2rem 0;
+
+		@include tablet {
+			gap: 1rem;
+			margin: 1.5rem 0;
+		}
+		@include desktop {
+			gap: 1.3rem;
+			margin: 2rem 0;
+		}
+	}
+}
