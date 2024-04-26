@@ -30,7 +30,7 @@ function ProfilePage({ user, setUser }) {
 			}
 		};
 		getUserInfo();
-	}, []);
+	}, [user]);
 
 	if (failedAuth) {
 		return (

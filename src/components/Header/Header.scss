@@ -6,7 +6,8 @@
 	font-size: 1.2rem;
 	padding: 1.6rem;
 	background-color: $green;
-	position: relative;
+	position: fixed;
+	width: 100%;
 
 	@include tablet {
 		font-size: 2rem;
