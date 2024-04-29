@@ -4,33 +4,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import "./ProfilePage.scss";
 
-function ProfilePage({ user, setUser }) {
+function ProfilePage({ user, failedAuth }) {
 	const navigate = useNavigate();
-	const [failedAuth, setFailedAuth] = useState(false);
-
-	const token = sessionStorage.getItem("token");
-
-	useEffect(() => {
-		const getUserInfo = async () => {
-			if (!token) {
-				return setFailedAuth(true);
-			}
-			// Get the data from the API
-			const profileUrl = "http://localhost:8080/users/profile";
-			try {
-				const response = await axios.get(profileUrl, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				});
-				setUser(response.data);
-				sessionStorage.setItem("user_info", response.data);
-			} catch (error) {
-				setFailedAuth(true);
-			}
-		};
-		getUserInfo();
-	}, [user]);
 
 	if (failedAuth) {
 		return (

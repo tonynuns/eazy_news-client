@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./LoginPage.scss";
 
-function LoginPage() {
+function LoginPage({ setToken }) {
 	const navigate = useNavigate();
 	const [formError, setFormError] = useState({});
 	const [errorMessage, setErrorMessage] = useState("");
@@ -35,6 +35,7 @@ function LoginPage() {
 			const response = await axios.post(loginUrl, formObj);
 			setErrorMessage("");
 			sessionStorage.setItem("token", response.data.token);
+			setToken(sessionStorage.getItem("token"));
 			navigate("/profile");
 		} catch (error) {
 			setErrorMessage(error.response.data);

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.jpg";
+import logo from "../../assets/images/logo/logo.jpg";
 import "./Header.scss";
 
-function Header({ user, setUser }) {
+function Header({ failedAuth, setUser, setToken }) {
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
-		sessionStorage.removeItem("user_info");
 		setUser(null);
+		setToken(null);
 	};
 
 	return (
@@ -25,18 +25,18 @@ function Header({ user, setUser }) {
 						<li className="header__nav-item">Archive</li>
 					</Link>
 					<div className="header__nav-access">
-						{!user && (
+						{failedAuth && (
 							<Link className="header__nav-link" to="/signup">
 								<li className="header__nav-item">Sign Up</li>
 							</Link>
 						)}
-						{!user && (
+						{failedAuth && (
 							<Link className="header__nav-link" to="/login">
 								<li className="header__nav-item">Log In</li>
 							</Link>
 						)}
 
-						{user && (
+						{!failedAuth && (
 							<Link className="header__nav-link" to="">
 								<li className="header__nav-item" onClick={handleLogout}>
 									Log Out

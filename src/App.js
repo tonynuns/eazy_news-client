@@ -7,27 +7,50 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Footer from "./components/Footer/Footer";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.scss";
 
 function App() {
 	const [user, setUser] = useState(null);
-	const userInfo = sessionStorage.getItem("user_info");
+	const [failedAuth, setFailedAuth] = useState(false);
+	const [token, setToken] = useState(sessionStorage.getItem("token"));
 
 	useEffect(() => {
-		setUser(userInfo);
-	}, [userInfo]);
+		const getUserInfo = async () => {
+			if (!token) {
+				return setFailedAuth(true);
+			}
+			// Get the data from the API
+			const profileUrl = "http://localhost:8080/users/profile";
+			try {
+				const response = await axios.get(profileUrl, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+				setUser(response.data);
+				setFailedAuth(false);
+			} catch (error) {
+				setFailedAuth(true);
+			}
+		};
+		getUserInfo();
+	}, [token]);
+
 	return (
 		<div className="app-container">
 			<BrowserRouter>
-				<Header user={user} setUser={setUser} />
+				<ScrollToTop />
+				<Header failedAuth={failedAuth} setUser={setUser} setToken={setToken} />
 				<div className="main-body">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/archive" element={<HomePage />} />
 						<Route path="/signup" element={<SignUpPage />} />
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />} />
+						<Route path="/login" element={<LoginPage setToken={setToken} />} />
+						<Route path="/profile" element={<ProfilePage user={user} failedAuth={failedAuth} />} />
 						<Route path="/:id" element={<NewsDetailPage />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>

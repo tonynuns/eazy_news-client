@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
-import timeAgo from "../../utils/helperFunctions/timeAgo";
+import { Link } from "react-router-dom";
+
+import NewsCard from "../NewsCard/NewsCard";
 import "./NewsList.scss";
 
 function NewsList({ newsArr }) {
 	const [simpleNews, setSimpleNews] = useState([]);
 
+	// save page scroll position in session storage before navigating to news details page
+	const saveScrollPos = () => {
+		const scrollPos = { x: window.scrollX, y: window.scrollY };
+		sessionStorage.setItem("scrollPos", JSON.stringify(scrollPos));
+	};
+	// restore page scroll position on return to page
+	const restoreScrollPos = () => {
+		const scrollPos = JSON.parse(sessionStorage.getItem("scrollPos"));
+		if (scrollPos) {
+			window.scrollTo(scrollPos.x, scrollPos.y);
+		}
+	};
+
 	useEffect(() => {
 		const newsSummaryArr = newsArr.map((news) => news.summary);
 		const filteredArr = newsArr
 			.filter((news, index) => newsSummaryArr.indexOf(news.summary) === index) // remove potential duplicate news articles
-			.filter((news) => news.image_url !== null); // remove news articles without a news image
+			.filter((news) => news.image_url !== null); // remove news articles without an image
 		setSimpleNews(filteredArr);
+		restoreScrollPos();
 	}, [newsArr]);
 
 	return (
@@ -18,19 +34,22 @@ function NewsList({ newsArr }) {
 			{simpleNews
 				.filter((news, index) => index < 120)
 				.map((news) => (
-					<div key={news.id} className="newslist__container">
-						<div className="newslist__img-wrapper">
-							<img className="newslist__img" src={news.image_url} alt="News Photo" />
-						</div>
-						<div className="newslist__text-wrapper">
-							<h2 className="newslist__title">{news.title}</h2>
-							<p className="newslist__summary">{news.summary}</p>
-							<div className="newslist__source-time-wrapper">
-								<p className="newslist__source">{news.source}</p>
-								<p className="newslist__time">{timeAgo(news.published_at)}</p>
-							</div>
-						</div>
-					</div>
+					<Link
+						to={`/${news.id}`}
+						state={{ news }}
+						key={news.id}
+						className="newslist__link"
+						onClick={saveScrollPos}>
+						<NewsCard
+							imageUrl={news.image_url}
+							title={news.title}
+							summary={news.summary}
+							source={news.source}
+							publishedAt={news.published_at}
+							views={news.views}
+							likes={news.likes}
+						/>
+					</Link>
 				))}
 		</main>
 	);

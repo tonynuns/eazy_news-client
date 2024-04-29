@@ -1,0 +1,65 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.newsdetail {
+	@include flex($direction: column, $gap: 1.5rem);
+
+	&__content-container {
+		@include flex($direction: column, $gap: 3.5rem);
+	}
+	&__source-author-published-wrapper {
+		@include flex($direction: column, $gap: 0.5rem);
+		position: relative;
+	}
+	&__img-title-wrapper {
+		@include tablet {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			gap: 5rem;
+		}
+	}
+	&__img {
+		width: 100%;
+		padding-bottom: 1rem;
+	}
+	&__published {
+		@include tablet {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+	}
+	&__views-likes-wrapper {
+		@include flex($justify: right, $gap: 5rem);
+	}
+	&__icon-wrapper {
+		@include flex($align: center, $gap: 0.5rem);
+	}
+	&__icon {
+		display: block;
+		width: 1.5rem;
+
+		@include tablet {
+			width: 1.6rem;
+		}
+		@include desktop {
+			width: 2.1rem;
+		}
+
+		&--views {
+			width: 1.8rem;
+			margin-bottom: 0.31rem;
+
+			@include tablet {
+				width: 2rem;
+			}
+			@include desktop {
+				width: 2.5rem;
+			}
+		}
+	}
+	&__bold {
+		font-weight: bold;
+	}
+}
