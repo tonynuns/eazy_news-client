@@ -9,6 +9,10 @@ function Header({ failedAuth, setUser, setToken }) {
 		setToken(null);
 	};
 
+	const handleClick = () => {
+		sessionStorage.removeItem("scrollPos");
+	};
+
 	return (
 		<header className="header">
 			<div className="header__container">
@@ -19,10 +23,14 @@ function Header({ failedAuth, setUser, setToken }) {
 				</div>
 				<ul className="header__nav">
 					<Link className="header__nav-link" to="/">
-						<li className="header__nav-item">Home</li>
+						<li className="header__nav-item" onClick={handleClick}>
+							Home
+						</li>
 					</Link>
 					<Link className="header__nav-link" to="/archive">
-						<li className="header__nav-item">Archive</li>
+						<li className="header__nav-item" onClick={handleClick}>
+							Archive
+						</li>
 					</Link>
 					<div className="header__nav-access">
 						{failedAuth && (
