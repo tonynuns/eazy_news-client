@@ -52,9 +52,6 @@ function NewsDetail({ news }) {
 						<span>{news.likes}</span>
 					</div>
 				</div>
-				{/* <Link to={news.news_url} target="_blank">
-					<p>News Article Details</p>
-				</Link> */}
 			</div>
 		</div>
 	);

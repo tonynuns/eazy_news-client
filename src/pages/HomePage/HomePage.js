@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getCurrentNews, getArchiveNews } from "../../utils/apiMethods/easyNewsApi";
+import ArchiveDatePicker from "../../components/ArchiveDatePicker/ArchiveDatePicker";
 import NewsList from "../../components/NewsList/NewsList";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./HomePage.scss";
 
 function HomePage() {
 	const currentDate = new Date().setHours(0, 0, 0, 0);
-	const twoDaysMlSec = 24 * 60 * 60 * 1000;
+	const twoDaysMlSec = 48 * 60 * 60 * 1000;
 	const threeDaysMlSec = 72 * 60 * 60 * 1000;
 	const maxEndDate = new Date(currentDate).getTime() - twoDaysMlSec;
 	const maxStartDate = new Date(currentDate).getTime() - threeDaysMlSec;
@@ -17,22 +17,9 @@ function HomePage() {
 	const [startDate, setStartDate] = useState(maxStartDate);
 	const [endDate, setEndDate] = useState(maxEndDate);
 	const [archiveNews, setArchiveNews] = useState(false);
-	const [errorMsg, setErrorMsg] = useState(null);
 
 	const location = useLocation();
 	const pathName = location.pathname;
-
-	const handleClick = async () => {
-		if (endDate <= startDate) {
-			setNewsArr([]);
-			setErrorMsg("Start date must be before end date!");
-			return;
-		}
-		setErrorMsg(null);
-		const archiveNews = await getArchiveNews(startDate, endDate);
-		setNewsArr(archiveNews);
-		setArchiveNews(true);
-	};
 
 	useEffect(() => {
 		const getData = async () => {
@@ -53,41 +40,17 @@ function HomePage() {
 
 	return (
 		<>
-			{archiveNews && (
-				<div className="archive">
-					<p className="archive__title">Select Date Range</p>
-					<div className="archive__date-container">
-						<div className="archive__date-wrapper">
-							<span>From: </span>
-							<DatePicker
-								className="archive__date-picker"
-								selected={startDate}
-								onChange={(date) => setStartDate(date)}
-								dateFormat={"dd-MMM-yyyy"}
-								maxDate={maxStartDate}
-								showYearDropdown
-								scrollableMonthYearDropdown
-							/>
-						</div>
-						<div className="archive__date-wrapper">
-							<span>To: </span>
-							<DatePicker
-								className="archive__date-picker"
-								selected={endDate}
-								onChange={(date) => setEndDate(date)}
-								dateFormat={"dd-MMM-yyyy"}
-								maxDate={maxEndDate}
-								showYearDropdown
-								scrollableMonthYearDropdown
-							/>
-						</div>
-					</div>
-					<button className="archive__btn btn" onClick={handleClick}>
-						Search
-					</button>
-					<p className="archive__error-msg">{errorMsg}</p>
-				</div>
-			)}
+			<ArchiveDatePicker
+				startDate={startDate}
+				endDate={endDate}
+				archiveNews={archiveNews}
+				maxStartDate={maxStartDate}
+				maxEndDate={maxEndDate}
+				setStartDate={setStartDate}
+				setEndDate={setEndDate}
+				setArchiveNews={setArchiveNews}
+				setNewsArr={setNewsArr}
+			/>
 			<NewsList newsArr={newsArr} />
 		</>
 	);

@@ -1,0 +1,73 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.archive {
+	margin: 0 1rem 1rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	border: 1px solid $grey;
+	@include flex($direction: column, $gap: 0.5rem);
+	max-width: 33rem;
+
+	@include tablet {
+		margin: 0 4rem 1rem;
+		max-width: 100%;
+		gap: 2rem;
+	}
+	@include desktop {
+		margin: 0 11rem 1rem;
+	}
+
+	&__title {
+		font-weight: bold;
+	}
+	&__date-container {
+		@include flex($justify: space-between);
+
+		@include tablet {
+			justify-content: flex-start;
+		}
+	}
+	&__date-wrapper {
+		@include flex($align: center, $gap: 0.8rem);
+	}
+	&__date-picker {
+		width: 50%;
+		min-width: 6.5rem;
+		padding: 0.2rem 0;
+		font-size: 1rem;
+		text-align: center;
+
+		@include tablet {
+			width: 60%;
+			min-width: 6rem;
+			padding: 0.3rem 0;
+			font-size: 1.5rem;
+		}
+		@include desktop {
+			padding: 0.7rem 0;
+			font-size: 1.7rem;
+		}
+	}
+	&__btn {
+		align-self: center;
+
+		@include tablet {
+			align-self: flex-start;
+		}
+	}
+	&__error-msg {
+		color: $red;
+		text-align: center;
+	}
+}
+.react-datepicker {
+	font-size: 0.8rem;
+
+	@include tablet {
+		font-size: 1rem;
+	}
+	@include desktop {
+		font-size: 1.1rem;
+	}
+}

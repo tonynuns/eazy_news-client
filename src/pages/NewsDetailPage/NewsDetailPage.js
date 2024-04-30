@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import NewsDetail from "../../components/NewsDetail/NewsDetail";
+import Comments from "../../components/Comments/Comments";
 import "./NewsDetailPage.scss";
 
 function NewsDetailPage() {
@@ -12,6 +13,7 @@ function NewsDetailPage() {
 				<p>Go Back</p>
 			</Link>
 			<NewsDetail news={news} />
+			<Comments />
 		</main>
 	);
 }
