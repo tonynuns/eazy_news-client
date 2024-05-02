@@ -1,38 +1,44 @@
 import { useState, useEffect } from "react";
-import { getNewsComments, addNewComment } from "../../utils/apiMethods/easyNewsApi";
+import { getComments, addNewComment, deleteComment } from "../../utils/apiMethods/commentsApi";
 import deleteIcon from "../../assets/images/icons/delete_outline-24px.svg";
 import timeAgo from "../../utils/helperFunctions/timeAgo";
 import "./Comments.scss";
 
 function Comments({ user, newsId }) {
 	const [commentsArr, setCommentsArr] = useState([]);
-	const [comment, setComment] = useState("");
-	const [newCommentObj, setNewCommentObj] = useState({});
+	const [comment, setComment] = useState(null);
+	const [isCommentChanged, setIsCommentChanged] = useState(false); // enables useEffect run when comment is added or deleted
 
 	useEffect(() => {
 		const fetchComments = async () => {
-			const newsCommentsArr = await getNewsComments(newsId);
+			const newsCommentsArr = await getComments(newsId);
 			setCommentsArr(newsCommentsArr);
 		};
 		fetchComments();
-	}, [newsId, newCommentObj]);
+		setIsCommentChanged(false);
+	}, [newsId, isCommentChanged]);
 
-	const handleSubmit = async (e) => {
+	const handleAddComment = async (e) => {
 		e.preventDefault();
 		const commentObj = {
 			comment: comment,
 			user_id: user.id,
 			news_id: newsId,
 		};
-		const newCommentObj = await addNewComment(commentObj);
-		setNewCommentObj(newCommentObj);
+		await addNewComment(commentObj);
+		setIsCommentChanged(true);
 		e.target.reset();
+	};
+
+	const handleDeleteComment = async (commentId) => {
+		await deleteComment(commentId);
+		setIsCommentChanged(true);
 	};
 
 	return (
 		<main className="comment">
 			{user && (
-				<form className="comment__addcomment" onSubmit={handleSubmit}>
+				<form className="comment__addcomment" onSubmit={handleAddComment}>
 					<textarea
 						className="comment__input"
 						type="text"
@@ -59,7 +65,9 @@ function Comments({ user, newsId }) {
 							</div>
 							<p className="comment__comment">{comment.comment}</p>
 							{user?.id === comment.user_id && (
-								<div className="comment__delete-wrapper">
+								<div
+									className="comment__delete-wrapper"
+									onClick={() => handleDeleteComment(comment.id)}>
 									<img className="comment__delete" src={deleteIcon} alt="Delete Icon" />
 								</div>
 							)}

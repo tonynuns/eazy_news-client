@@ -17,14 +17,6 @@ function NewsCard({ imageUrl, title, summary, source, publishedAt, views, likes 
 					<p className="newscard__time">{timeAgo(publishedAt)}</p>
 				</div>
 				<div className="newscard__views-likes-wrapper">
-					<div className="newscard__icon-wrapper newscard__icon-wrapper--views">
-						<img
-							className="newscard__icon newscard__icon--views"
-							src={viewsIcon}
-							alt="Views Icon"
-						/>
-						<span>{views}</span>
-					</div>
 					<div className="newscard__icon-wrapper newscard__icon-wrapper--likes">
 						<img
 							className="newscard__icon newscard__icon--likes"
@@ -32,6 +24,14 @@ function NewsCard({ imageUrl, title, summary, source, publishedAt, views, likes 
 							alt="Likes Icon"
 						/>
 						<span>{likes}</span>
+					</div>
+					<div className="newscard__icon-wrapper newscard__icon-wrapper--views">
+						<img
+							className="newscard__icon newscard__icon--views"
+							src={viewsIcon}
+							alt="Views Icon"
+						/>
+						<span>{views}</span>
 					</div>
 				</div>
 			</div>

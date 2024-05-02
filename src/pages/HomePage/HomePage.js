@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getCurrentNews, getArchiveNews } from "../../utils/apiMethods/easyNewsApi";
+import { getCurrentNews, getArchiveNews } from "../../utils/apiMethods/newsApi";
 import ArchiveDatePicker from "../../components/ArchiveDatePicker/ArchiveDatePicker";
 import NewsList from "../../components/NewsList/NewsList";
 import "react-datepicker/dist/react-datepicker.css";

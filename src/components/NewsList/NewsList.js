@@ -23,8 +23,8 @@ function NewsList({ newsArr }) {
 	useEffect(() => {
 		const newsSummaryArr = newsArr.map((news) => news.summary);
 		const filteredArr = newsArr
-			.filter((news, index) => newsSummaryArr.indexOf(news.summary) === index) // remove potential duplicate news articles
-			.filter((news) => news.image_url !== null); // remove news articles without an image
+			.filter((news, index) => newsSummaryArr.indexOf(news.summary) === index) // removes potential duplicate news articles
+			.filter((news) => news.image_url !== null); // removes news articles without an image
 		setSimpleNews(filteredArr);
 		restoreScrollPos();
 	}, [newsArr]);
@@ -34,12 +34,7 @@ function NewsList({ newsArr }) {
 			{simpleNews
 				.filter((news, index) => index < 120)
 				.map((news) => (
-					<Link
-						to={`/${news.id}`}
-						state={{ news }}
-						key={news.id}
-						className="newslist__link"
-						onClick={saveScrollPos}>
+					<Link to={`/${news.id}`} key={news.id} className="newslist__link" onClick={saveScrollPos}>
 						<NewsCard
 							imageUrl={news.image_url}
 							title={news.title}

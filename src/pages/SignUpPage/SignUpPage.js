@@ -1,7 +1,7 @@
 import Input from "../../components/Input/Input";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signUpUser } from "../../utils/apiMethods/easyNewsApi";
+import { signUpUser } from "../../utils/apiMethods/usersApi";
 import "./SignUpPage.scss";
 
 function SignUpPage() {

@@ -8,7 +8,7 @@ import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import { getUserProfile } from "./utils/apiMethods/easyNewsApi";
+import { getUserProfile } from "./utils/apiMethods/usersApi";
 import { useState, useEffect } from "react";
 import "./App.scss";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-import { getArchiveNews } from "../../utils/apiMethods/easyNewsApi";
+import { getArchiveNews } from "../../utils/apiMethods/newsApi";
 import "./ArchiveDatePicker.scss";
 
 function ArchiveDatePicker({

@@ -1,7 +1,7 @@
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginUser } from "../../utils/apiMethods/easyNewsApi";
+import { loginUser } from "../../utils/apiMethods/usersApi";
 import "./LoginPage.scss";
 
 function LoginPage({ setToken }) {
