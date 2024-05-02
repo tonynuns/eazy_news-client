@@ -27,12 +27,12 @@ function NewsDetail({ news }) {
 					</p>
 				</div>
 				<p className="newsdetail__summary">{news.summary}</p>
-				<p className="newsdetail__content">
+				<div className="newsdetail__content">
 					{news.content}
-					<Link to={news.news_url} target="_blank">
+					<Link className="newsdetail__link" to={news.news_url} target="_blank">
 						<p>Read Full Article</p>
 					</Link>
-				</p>
+				</div>
 
 				<div className="newsdetail__views-likes-wrapper">
 					<div className="newsdetail__icon-wrapper newsdetail__icon-wrapper--views">

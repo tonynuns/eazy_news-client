@@ -63,8 +63,8 @@
 		&-item {
 			list-style: none;
 		}
-		&-access {
-			@include flex($direction: column, $gap: 0.5rem);
+		&-access-wrapper {
+			@include flex($direction: column);
 			position: absolute;
 			right: 1.6rem;
 
@@ -74,6 +74,9 @@
 			@include desktop {
 				right: 4.8rem;
 			}
+		}
+		&-access {
+			@include flex($direction: column, $gap: 0.5rem);
 		}
 	}
 

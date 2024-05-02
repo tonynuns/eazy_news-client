@@ -4,19 +4,17 @@ import { getArchiveNews } from "../../utils/apiMethods/easyNewsApi";
 import "./ArchiveDatePicker.scss";
 
 function ArchiveDatePicker({
-	startDate,
-	endDate,
-	setStartDate,
-	setEndDate,
-	archiveNews,
-	setArchiveNews,
 	setNewsArr,
-	maxStartDate,
-	maxEndDate,
+	isArchiveNews,
+	setIsArchiveNews,
+	datePickerObj,
+	setDatePickerObj,
 }) {
+	const { startDate, endDate, maxStartDate, maxEndDate } = datePickerObj;
 	const [errorMsg, setErrorMsg] = useState(null);
 
 	const handleClick = async () => {
+		sessionStorage.removeItem("scrollPos");
 		if (endDate <= startDate) {
 			setNewsArr([]);
 			setErrorMsg("Start date must be before end date!");
@@ -25,12 +23,12 @@ function ArchiveDatePicker({
 		setErrorMsg(null);
 		const pastNews = await getArchiveNews(startDate, endDate);
 		setNewsArr(pastNews);
-		setArchiveNews(true);
+		setIsArchiveNews(true);
 	};
 
 	return (
 		<div>
-			{archiveNews && (
+			{isArchiveNews && (
 				<div className="archive">
 					<p className="archive__title">Select Date Range</p>
 					<div className="archive__date-container">
@@ -38,8 +36,9 @@ function ArchiveDatePicker({
 							<span>From: </span>
 							<DatePicker
 								className="archive__date-picker"
+								name="startDate"
 								selected={startDate}
-								onChange={(date) => setStartDate(date)}
+								onChange={(date, name) => setDatePickerObj({ ...datePickerObj, startDate: date })}
 								dateFormat={"dd-MMM-yyyy"}
 								maxDate={maxStartDate}
 								showYearDropdown
@@ -50,8 +49,9 @@ function ArchiveDatePicker({
 							<span>To: </span>
 							<DatePicker
 								className="archive__date-picker"
+								name="endDate"
 								selected={endDate}
-								onChange={(date) => setEndDate(date)}
+								onChange={(date) => setDatePickerObj({ ...datePickerObj, endDate: date })}
 								dateFormat={"dd-MMM-yyyy"}
 								maxDate={maxEndDate}
 								showYearDropdown

@@ -8,8 +8,8 @@ import NewsDetailPage from "./pages/NewsDetailPage/NewsDetailPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { getUserProfile } from "./utils/apiMethods/easyNewsApi";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.scss";
 
 function App() {
@@ -23,16 +23,11 @@ function App() {
 				return setFailedAuth(true);
 			}
 			// Get the data from the API
-			const profileUrl = "http://localhost:8080/users/profile";
-			try {
-				const response = await axios.get(profileUrl, {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				});
-				setUser(response.data);
+			const profileResponse = await getUserProfile(token);
+			if (profileResponse !== "error") {
+				setUser(profileResponse);
 				setFailedAuth(false);
-			} catch (error) {
+			} else {
 				setFailedAuth(true);
 			}
 		};
@@ -51,7 +46,7 @@ function App() {
 						<Route path="/signup" element={<SignUpPage />} />
 						<Route path="/login" element={<LoginPage setToken={setToken} />} />
 						<Route path="/profile" element={<ProfilePage user={user} failedAuth={failedAuth} />} />
-						<Route path="/:id" element={<NewsDetailPage />} />
+						<Route path="/:id" element={<NewsDetailPage user={user} />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</div>

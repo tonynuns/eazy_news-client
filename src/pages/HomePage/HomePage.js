@@ -14,9 +14,13 @@ function HomePage() {
 	const maxStartDate = new Date(currentDate).getTime() - threeDaysMlSec;
 
 	const [newsArr, setNewsArr] = useState([]);
-	const [startDate, setStartDate] = useState(maxStartDate);
-	const [endDate, setEndDate] = useState(maxEndDate);
-	const [archiveNews, setArchiveNews] = useState(false);
+	const [isArchiveNews, setIsArchiveNews] = useState(false);
+	const [datePickerObj, setDatePickerObj] = useState({
+		startDate: maxStartDate,
+		endDate: maxEndDate,
+		maxStartDate: maxStartDate,
+		maxEndDate: maxEndDate,
+	});
 
 	const location = useLocation();
 	const pathName = location.pathname;
@@ -27,12 +31,12 @@ function HomePage() {
 				// current news has a date range of current date until 2 days ago
 				const currentNews = await getCurrentNews();
 				setNewsArr(currentNews);
-				setArchiveNews(false);
+				setIsArchiveNews(false);
 			} else {
 				// archive news has date range before 2 days ago and beyond
-				const archiveNews = await getArchiveNews(startDate, endDate);
+				const archiveNews = await getArchiveNews(datePickerObj.startDate, datePickerObj.endDate);
 				setNewsArr(archiveNews);
-				setArchiveNews(true);
+				setIsArchiveNews(true);
 			}
 		};
 		getData();
@@ -41,15 +45,11 @@ function HomePage() {
 	return (
 		<>
 			<ArchiveDatePicker
-				startDate={startDate}
-				endDate={endDate}
-				archiveNews={archiveNews}
-				maxStartDate={maxStartDate}
-				maxEndDate={maxEndDate}
-				setStartDate={setStartDate}
-				setEndDate={setEndDate}
-				setArchiveNews={setArchiveNews}
 				setNewsArr={setNewsArr}
+				isArchiveNews={isArchiveNews}
+				setIsArchiveNews={setIsArchiveNews}
+				datePickerObj={datePickerObj}
+				setDatePickerObj={setDatePickerObj}
 			/>
 			<NewsList newsArr={newsArr} />
 		</>

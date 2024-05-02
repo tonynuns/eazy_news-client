@@ -3,17 +3,17 @@ import NewsDetail from "../../components/NewsDetail/NewsDetail";
 import Comments from "../../components/Comments/Comments";
 import "./NewsDetailPage.scss";
 
-function NewsDetailPage() {
+function NewsDetailPage({ user }) {
 	const location = useLocation();
 	const { news } = location.state;
 
 	return (
 		<main className="newsdetailpage">
-			<Link to={-1}>
+			<Link className="newsdetailpage__link" to={-1}>
 				<p>Go Back</p>
 			</Link>
 			<NewsDetail news={news} />
-			<Comments />
+			<Comments user={user} newsId={news.id} />
 		</main>
 	);
 }

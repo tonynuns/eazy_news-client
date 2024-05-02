@@ -5,6 +5,7 @@ import "./Header.scss";
 function Header({ failedAuth, setUser, setToken }) {
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
+		sessionStorage.removeItem("scrollPos");
 		setUser(null);
 		setToken(null);
 	};
@@ -32,27 +33,36 @@ function Header({ failedAuth, setUser, setToken }) {
 							Archive
 						</li>
 					</Link>
-					<div className="header__nav-access">
-						{failedAuth && (
+				</ul>
+
+				<div className="header__nav-access-wrapper">
+					{failedAuth && (
+						<ul className="header__nav-access">
 							<Link className="header__nav-link" to="/signup">
 								<li className="header__nav-item">Sign Up</li>
 							</Link>
-						)}
-						{failedAuth && (
+
 							<Link className="header__nav-link" to="/login">
 								<li className="header__nav-item">Log In</li>
 							</Link>
-						)}
+						</ul>
+					)}
 
-						{!failedAuth && (
+					{!failedAuth && (
+						<ul className="header__nav-access">
+							<Link className="header__nav-link" to="/profile">
+								<li className="header__nav-item" onClick={handleClick}>
+									Profile
+								</li>
+							</Link>
 							<Link className="header__nav-link" to="">
 								<li className="header__nav-item" onClick={handleLogout}>
 									Log Out
 								</li>
 							</Link>
-						)}
-					</div>
-				</ul>
+						</ul>
+					)}
+				</div>
 			</div>
 			<div className="header__input-wrapper">
 				<select className="header__category input" name="category" onChange={() => ""}>

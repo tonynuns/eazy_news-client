@@ -1,7 +1,7 @@
 import Input from "../../components/Input/Input";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { signUpUser } from "../../utils/apiMethods/easyNewsApi";
 import "./SignUpPage.scss";
 
 function SignUpPage() {
@@ -26,7 +26,6 @@ function SignUpPage() {
 	};
 
 	const handleSubmit = async (e) => {
-		const signUpUrl = "http://localhost:8080/users/signup";
 		e.preventDefault();
 		setFormError({});
 		const formObj = {
@@ -38,13 +37,12 @@ function SignUpPage() {
 		};
 		if (isFormValid(formObj) === false) return;
 
-		try {
-			delete formObj.confirm_password;
-			const response = await axios.post(signUpUrl, formObj);
+		const signUpResponse = await signUpUser(formObj);
+		if (signUpResponse === "Registered successfully") {
 			setErrorMessage("");
 			navigate("/login");
-		} catch (error) {
-			setErrorMessage(error.response.data);
+		} else {
+			setErrorMessage(signUpResponse);
 		}
 	};
 

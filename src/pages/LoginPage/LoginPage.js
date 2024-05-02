@@ -1,7 +1,7 @@
 import Input from "../../components/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { loginUser } from "../../utils/apiMethods/easyNewsApi";
 import "./LoginPage.scss";
 
 function LoginPage({ setToken }) {
@@ -22,7 +22,6 @@ function LoginPage({ setToken }) {
 	};
 
 	const handleSubmit = async (e) => {
-		const loginUrl = "http://localhost:8080/users/login";
 		e.preventDefault();
 		setFormError({});
 		const formObj = {
@@ -31,14 +30,14 @@ function LoginPage({ setToken }) {
 		};
 		if (isFormValid(formObj) === false) return;
 
-		try {
-			const response = await axios.post(loginUrl, formObj);
+		const loginResponse = await loginUser(formObj);
+		if (loginResponse.token) {
 			setErrorMessage("");
-			sessionStorage.setItem("token", response.data.token);
+			sessionStorage.setItem("token", loginResponse.token);
 			setToken(sessionStorage.getItem("token"));
 			navigate("/profile");
-		} catch (error) {
-			setErrorMessage(error.response.data);
+		} else {
+			setErrorMessage(loginResponse);
 		}
 	};
 
