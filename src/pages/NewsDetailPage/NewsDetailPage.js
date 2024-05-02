@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getNewsDetail } from "../../utils/apiMethods/newsApi";
 import NewsDetail from "../../components/NewsDetail/NewsDetail";
@@ -6,12 +6,16 @@ import Comments from "../../components/Comments/Comments";
 import "./NewsDetailPage.scss";
 
 function NewsDetailPage({ user }) {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [news, setNews] = useState({});
 
 	useEffect(() => {
 		const getNews = async () => {
 			const currentNews = await getNewsDetail(id);
+			if (currentNews === 0) {
+				navigate("*");
+			}
 			setNews(currentNews);
 		};
 		getNews();

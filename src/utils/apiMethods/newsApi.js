@@ -34,6 +34,7 @@ const getNewsDetail = async (newsId) => {
 		return response.data;
 	} catch (error) {
 		console.log(error.response.data.message);
+		return error.response.data.length;
 	}
 };
 

@@ -3,15 +3,14 @@ import viewsIcon from "../../assets/images/icons/views.svg";
 import likesIcon from "../../assets/images/icons/likes.svg";
 import "./NewsCard.scss";
 
-function NewsCard({ imageUrl, title, summary, source, publishedAt, views, likes }) {
+function NewsCard({ imageUrl, title, source, publishedAt, views, likes }) {
 	return (
 		<div className="newscard">
 			<div className="newscard__img-wrapper">
 				<img className="newscard__img" src={imageUrl} alt="News Photo" />
 			</div>
 			<div className="newscard__text-wrapper">
-				<h2 className="newscard__title">{title}</h2>
-				<p className="newscard__summary">{summary}</p>
+				<h3 className="newscard__title">{title}</h3>
 				<div className="newscard__source-time-wrapper">
 					<p className="newscard__source">{source}</p>
 					<p className="newscard__time">{timeAgo(publishedAt)}</p>

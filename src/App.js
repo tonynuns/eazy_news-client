@@ -43,10 +43,10 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/archive" element={<HomePage />} />
+						<Route path="/:id" element={<NewsDetailPage user={user} />} />
 						<Route path="/signup" element={<SignUpPage />} />
 						<Route path="/login" element={<LoginPage setToken={setToken} />} />
 						<Route path="/profile" element={<ProfilePage user={user} failedAuth={failedAuth} />} />
-						<Route path="/:id" element={<NewsDetailPage user={user} />} />
 						<Route path="*" element={<NotFoundPage />} />
 					</Routes>
 				</div>

@@ -1,0 +1,40 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.home__input-wrapper {
+	@include flex($direction: column, $gap: 1rem);
+	margin: 0 1rem 2rem;
+
+	@include tablet {
+		flex-direction: row;
+		justify-content: space-between;
+		margin: 0 4rem 2rem;
+		max-width: 65rem;
+	}
+	@include desktop {
+		margin: 0 11rem 3rem;
+	}
+}
+.home__category {
+	max-width: 35rem;
+	appearance: none;
+	background-image: url(../../assets/images/icons/arrow_drop_down-24px.svg);
+	background-repeat: no-repeat;
+	background-position: 97%;
+
+	@include tablet {
+		width: 50%;
+		min-width: 15rem;
+	}
+}
+.home__search {
+	max-width: 35rem;
+	background-image: url(../../assets/images/icons/search-24px.svg);
+	background-repeat: no-repeat;
+	background-position: 97%;
+
+	@include tablet {
+		width: 50%;
+		min-width: 15rem;
+	}
+}

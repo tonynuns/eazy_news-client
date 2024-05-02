@@ -3,7 +3,7 @@
 
 .archive {
 	margin: 0 1rem 1rem;
-	padding: 1rem;
+	padding: 1rem 1rem 0;
 	border-radius: 1rem;
 	border: 1px solid $grey;
 	@include flex($direction: column, $gap: 0.5rem);
@@ -11,7 +11,7 @@
 
 	@include tablet {
 		margin: 0 4rem 1rem;
-		max-width: 100%;
+		max-width: 65rem;
 		gap: 2rem;
 	}
 	@include desktop {

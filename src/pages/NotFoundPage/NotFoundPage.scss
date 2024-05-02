@@ -1,0 +1,31 @@
+@use "../../styles/mixins.scss" as *;
+
+.not-found-page {
+	padding: 1.6rem;
+
+	@include tablet {
+		padding: 2.4rem 4rem;
+	}
+	@include desktop {
+		padding: 2.4rem 12rem;
+	}
+
+	&__header {
+		font-size: 2.4rem;
+
+		@include tablet {
+			font-size: 3.3rem;
+		}
+	}
+	&__message {
+		padding: 0.5rem 0;
+		font-size: 1.2rem;
+
+		@include tablet {
+			font-size: 1.4rem;
+		}
+		@include desktop {
+			font-size: 1.6rem;
+		}
+	}
+}

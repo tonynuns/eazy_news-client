@@ -64,13 +64,6 @@ function Header({ failedAuth, setUser, setToken }) {
 					)}
 				</div>
 			</div>
-			<div className="header__input-wrapper">
-				<select className="header__category input" name="category" onChange={() => ""}>
-					<option value="">Select a Category</option>
-					<option value="business">Business</option>
-				</select>
-				<input className="header__search input" placeholder="Search"></input>
-			</div>
 		</header>
 	);
 }

@@ -32,7 +32,7 @@ function NewsList({ newsArr }) {
 	return (
 		<main className="newslist">
 			{simpleNews
-				.filter((news, index) => index < 120)
+				.filter((news, index) => index < 150)
 				.map((news) => (
 					<Link to={`/${news.id}`} key={news.id} className="newslist__link" onClick={saveScrollPos}>
 						<NewsCard

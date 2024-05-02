@@ -5,6 +5,7 @@ import "./ArchiveDatePicker.scss";
 
 function ArchiveDatePicker({
 	setNewsArr,
+	setFilteredNewsArr,
 	isArchiveNews,
 	setIsArchiveNews,
 	datePickerObj,
@@ -16,13 +17,14 @@ function ArchiveDatePicker({
 	const handleClick = async () => {
 		sessionStorage.removeItem("scrollPos");
 		if (endDate <= startDate) {
-			setNewsArr([]);
+			setFilteredNewsArr([]);
 			setErrorMsg("Start date must be before end date!");
 			return;
 		}
 		setErrorMsg(null);
 		const pastNews = await getArchiveNews(startDate, endDate);
 		setNewsArr(pastNews);
+		setFilteredNewsArr(pastNews);
 		setIsArchiveNews(true);
 	};
 
@@ -30,7 +32,7 @@ function ArchiveDatePicker({
 		<div>
 			{isArchiveNews && (
 				<div className="archive">
-					<p className="archive__title">Select Date Range</p>
+					{/* <p className="archive__title">Select Date Range</p> */}
 					<div className="archive__date-container">
 						<div className="archive__date-wrapper">
 							<span>From: </span>
