@@ -32,7 +32,6 @@ function ArchiveDatePicker({
 		<div>
 			{isArchiveNews && (
 				<div className="archive">
-					{/* <p className="archive__title">Select Date Range</p> */}
 					<div className="archive__date-container">
 						<div className="archive__date-wrapper">
 							<span>From: </span>
@@ -40,7 +39,7 @@ function ArchiveDatePicker({
 								className="archive__date-picker"
 								name="startDate"
 								selected={startDate}
-								onChange={(date, name) => setDatePickerObj({ ...datePickerObj, startDate: date })}
+								onChange={(date) => setDatePickerObj({ ...datePickerObj, startDate: date })}
 								dateFormat={"dd-MMM-yyyy"}
 								maxDate={maxStartDate}
 								showYearDropdown

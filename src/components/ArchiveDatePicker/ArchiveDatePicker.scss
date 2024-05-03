@@ -62,12 +62,12 @@
 	}
 }
 .react-datepicker {
-	font-size: 0.8rem;
+	font-size: 0.8rem !important;
 
 	@include tablet {
-		font-size: 1rem;
+		font-size: 1rem !important;
 	}
 	@include desktop {
-		font-size: 1.1rem;
+		font-size: 1.1rem !important;
 	}
 }

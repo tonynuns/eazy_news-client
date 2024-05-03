@@ -9,6 +9,7 @@ function SignUpPage() {
 	const [formError, setFormError] = useState({});
 	const [errorMessage, setErrorMessage] = useState("");
 
+	// function to validate signup form before submission
 	const isFormValid = (formObj) => {
 		let response = true;
 

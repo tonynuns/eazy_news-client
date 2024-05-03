@@ -77,9 +77,7 @@ function NewsDetail({ user, news, setNews }) {
 						<span>{news?.views}</span>
 					</div>
 				</div>
-				{!user && (
-					<p className="newsdetail__warning">Note: log in required to like or add a comment</p>
-				)}
+				{!user && <p className="newsdetail__warning">Login required to like or add a comment</p>}
 			</div>
 		</div>
 	);

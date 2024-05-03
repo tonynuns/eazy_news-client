@@ -22,7 +22,7 @@ function App() {
 			if (!token) {
 				return setFailedAuth(true);
 			}
-			// Get the data from the API
+			// if token exists in session storage, get the user data from the backend API
 			const profileResponse = await getUserProfile(token);
 			if (profileResponse !== "error") {
 				setUser(profileResponse);

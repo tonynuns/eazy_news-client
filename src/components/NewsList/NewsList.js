@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsList.scss";
 
@@ -32,7 +31,7 @@ function NewsList({ newsArr }) {
 	return (
 		<main className="newslist">
 			{simpleNews
-				.filter((news, index) => index < 150)
+				.filter((news, index) => index < 150) // display the first 150 news articles
 				.map((news) => (
 					<Link to={`/${news.id}`} key={news.id} className="newslist__link" onClick={saveScrollPos}>
 						<NewsCard

@@ -24,6 +24,7 @@ function HomePage() {
 		maxEndDate: maxEndDate,
 	});
 	const [categoryList, setCategoryList] = useState([]);
+	const [searchValue, setSearchValue] = useState("");
 
 	const location = useLocation();
 	const pathName = location.pathname;
@@ -31,7 +32,7 @@ function HomePage() {
 	useEffect(() => {
 		const getData = async () => {
 			if (pathName !== "/archive") {
-				// current news has a date range of current date until 2 days ago
+				// current news is tagged as news that has a date range of current date until 2 days ago
 				const currentNews = await getCurrentNews();
 				setNewsArr(currentNews);
 				setFilteredNewsArr(currentNews);
@@ -40,7 +41,7 @@ function HomePage() {
 				categoryNames.sort();
 				setCategoryList(categoryNames);
 			} else {
-				// archive news has date range before 2 days ago and beyond
+				// archive news is tagged as news that has date range before 2 days ago and beyond
 				const archiveNews = await getArchiveNews(datePickerObj.startDate, datePickerObj.endDate);
 				setNewsArr(archiveNews);
 				setFilteredNewsArr(archiveNews);
@@ -54,6 +55,8 @@ function HomePage() {
 	}, [pathName]);
 
 	const handleSearch = (e) => {
+		sessionStorage.removeItem("scrollPos");
+		setSearchValue(e.target.value);
 		const searchValue = e.target.value.toLowerCase();
 		const searchResult = newsArr.filter(
 			(news) =>
@@ -66,6 +69,8 @@ function HomePage() {
 	};
 
 	const handleSelect = (e) => {
+		sessionStorage.removeItem("scrollPos");
+		setSearchValue("");
 		const { value } = e.target;
 		if (categoryList.includes(value)) {
 			const filteredResult = newsArr.filter((news) => news.category === value);
@@ -86,7 +91,11 @@ function HomePage() {
 						</option>
 					))}
 				</select>
-				<input className="home__search input" placeholder="Search" onChange={handleSearch}></input>
+				<input
+					className="home__search input"
+					placeholder="Search"
+					value={searchValue}
+					onChange={handleSearch}></input>
 			</div>
 
 			<ArchiveDatePicker

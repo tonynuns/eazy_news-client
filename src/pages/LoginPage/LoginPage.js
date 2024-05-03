@@ -9,6 +9,7 @@ function LoginPage({ setToken }) {
 	const [formError, setFormError] = useState({});
 	const [errorMessage, setErrorMessage] = useState("");
 
+	// function to validate login form before submission
 	const isFormValid = (formObj) => {
 		let response = true;
 

@@ -11,12 +11,10 @@
 	@include tablet {
 		padding: 1rem 3rem;
 		gap: 2rem;
-		// grid-template-columns: repeat(auto-fill, minmax(31rem, 1fr));
 	}
 	@include desktop {
 		padding: 1rem 10rem;
 		gap: 3rem;
-		// grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
 	}
 	&__link {
 		text-decoration: inherit;
