@@ -27,6 +27,10 @@
 	}
 	&__link {
 		color: blue;
+
+		&-text {
+			display: inline;
+		}
 	}
 	&__views-likes-wrapper {
 		@include flex($justify: right, $gap: 5rem);

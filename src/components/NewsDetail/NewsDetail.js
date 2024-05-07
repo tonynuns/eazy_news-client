@@ -40,12 +40,15 @@ function NewsDetail({ user, news, setNews }) {
 				<p className="newsdetail__summary">{news?.summary}</p>
 				<div className="newsdetail__content">
 					{news?.content}
+					<br />
 					<Link
 						className="newsdetail__link"
 						to={news?.news_url}
 						target="_blank"
-						onClick={handleViewsClick}>
-						<p>Read Full Article</p>
+						rel="noopener noreferrer">
+						<p className="newsdetail__link-text" onClick={handleViewsClick}>
+							Read Full Article
+						</p>
 					</Link>
 				</div>
 
